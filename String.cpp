@@ -29,7 +29,7 @@ String::~String(){delete[] Str;}
 String String::operator+(const String& s)const {
     String uj;
     uj.Len = Len + s.Len;
-    delete []uj.Str;
+    delete[] uj.Str;
     uj.Str = new char[uj.Len + 1];
     strcpy(uj.Str, Str);
     strcat(uj.Str, s.Str);
