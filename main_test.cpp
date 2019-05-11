@@ -7,6 +7,7 @@
 #include "PhoneBookRecord.h"
 #include "Person.h"
 #include "Institution.h"
+#include "PhoneBook.h"
 
 void Test_1(){
     std::cout << "myString osztály tesztje:" << std::endl;
@@ -175,8 +176,21 @@ std::cout << "Institution osztály tesztje: " << std::endl;
         i2.write(std::cout);
 }
 
+void Test_3(){
+std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
+
+    std::cout << "PhoneBook ctor:" << std::endl;
+        std::ifstream in;
+        in.open("teszt.txt");
+        PhoneBook* b = new PhoneBook(in);
+        b->write(std::cout);
+        delete b;
+        in.close();
+}
+
 int main(){
     Test_1();
     Test_2();
+    Test_3();
     return 0;
 }
