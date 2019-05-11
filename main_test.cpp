@@ -1,8 +1,12 @@
 #include <iostream>
 #include <cstring>
 #include <sstream>
+#include <fstream>
 
 #include "myString.h"
+#include "PhoneBookRecord.h"
+#include "Person.h"
+#include "Institution.h"
 
 void Test_1(){
     std::cout << "myString osztály tesztje:" << std::endl;
@@ -96,8 +100,83 @@ void Test_1(){
         ss >> s10;
         std::cout << s10 << std::endl;
 }
+
+void Test_2(){
+std::cout << "Person osztály tesztje:" << std::endl;
+
+    std::cout << "\tPerson ctor:" << std::endl;
+        Person p1("Kis Bela", "Budapest Janos utca 43", "0670 337 28 34", "0670 342 33 53", "bubus");
+
+        if(p1.getName() == "Kis Bela"){
+            std::cout << "Helyes név" << std::endl;
+        }else std::cout << "Helytelen név" << std::endl;
+
+        if(p1.getAddress() == "Budapest Janos utca 43"){
+            std::cout << "Helyes cím" << std::endl;
+        }else std::cout << "Helytelen cím" << std::endl;
+
+        if(p1.getNumber() == "0670 337 28 34"){
+            std::cout << "Helyes telefonszám" << std::endl;
+        }else std::cout << "Helytelen telefonszám" << std::endl;
+
+        if(p1.getPnumber() == "0670 342 33 53"){
+            std::cout << "Helyes privátszám" << std::endl;
+        }else std::cout << "Helytelen privátszám" << std::endl;
+
+        if(p1.getNickname() == "bubus"){
+            std::cout << "Helyes becenév" << std::endl;
+        }else std::cout << "Helytelen becenév" << std::endl;
+
+    std::cout << "\toperator==:" << std::endl;
+       Person p2("","","","","");
+       p2 = p1;
+
+        if(p1 == p2){
+            std::cout << "Sikeres összehasonlítás" << std::endl;
+        }else std::cout << "Sikertelen összehasonlítás" << std::endl;
+
+     std::cout << "\twrite  metódus:" << std::endl;
+
+        std::cout << "Kiiírjuk a teszt embert" << std::endl;
+        p2.write(std::cout);
+
+std::cout << "Institution osztály tesztje: " << std::endl;
+
+    std::cout << "\tInstitution ctor:" << std::endl;
+        Institution i1("Snack Fun", "Szekszárd Mag utca 43", "0620 876 12 43", "1234-4567");
+
+        if(i1.getName() == "Snack Fun"){
+            std::cout << "Helyes név" << std::endl;
+        }else std::cout << "Helytelen név" << std::endl;
+
+        if(i1.getAddress() == "Szekszárd Mag utca 43"){
+            std::cout << "Helyes cím" << std::endl;
+        }else std::cout << "Helytelen cím" << std::endl;
+
+        if(i1.getNumber() == "0620 876 12 43"){
+            std::cout << "Helyes telefonszám" << std::endl;
+        }else std::cout << "Helytelen telefonszám" << std::endl;
+
+        if(i1.getHDN() == "1234-4567"){
+            std::cout << "Helyes help desk szám" << std::endl;
+        }else std::cout << "Helytelen help desk szám" << std::endl;
+
+    std::cout << "\toperator==:" << std::endl;
+       Institution i2("","","","");
+       i2 = i1;
+
+        if(i1 == i2){
+            std::cout << "Sikeres összehasonlítás" << std::endl;
+        }else std::cout << "Sikertelen összehasonlítás" << std::endl;
+
+     std::cout << "\twrite  metódus:" << std::endl;
+
+        std::cout << "Kiiírjuk a teszt embert" << std::endl;
+        i2.write(std::cout);
+}
+
 int main(){
     Test_1();
-
+    Test_2();
     return 0;
 }
