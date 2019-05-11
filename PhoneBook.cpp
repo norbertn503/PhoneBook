@@ -40,6 +40,26 @@ PhoneBook::PhoneBook(std::istream& is){
     Size--;
 }
 
+void PhoneBook::add(PhoneBookRecord* p){
+
+    for(size_t i = 0; i < Size; i++){
+        if(List[i]->getNumber() == p->getNumber()) throw "Már létezik ilyen adat";
+    }
+
+    PhoneBookRecord** tmp = new PhoneBookRecord*[Size+1];
+
+    for(size_t i = 0; i < Size; i++){
+        tmp[i] = List[i];
+    }
+
+    delete[] List;
+    List = tmp;
+
+    Size++;
+
+    List[Size-1] = p;
+}
+
 void PhoneBook::write(std::ostream& os){
     for(size_t i = 0; i < Size; i++){
         List[i]->write(os);

@@ -24,7 +24,9 @@ myString::myString(const myString& s){
     strcpy(Str,s.Str);
 }
 
-myString::~myString(){delete[] Str;}
+myString::~myString(){
+    delete[] Str;
+}
 
 myString& myString::operator=(const myString& s){
     if(this != &s){

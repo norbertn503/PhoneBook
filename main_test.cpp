@@ -183,7 +183,17 @@ std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
         std::ifstream in;
         in.open("teszt.txt");
         PhoneBook* b = new PhoneBook(in);
+
+        std::cout << "Létrehoztuk, írjuk is ki:" << std::endl;
         b->write(std::cout);
+
+    std::cout << "add(PhoneBookRecord*):" << std::endl;
+        Institution i1("Snack Fun", "Szekszárd Mag utca 43", "0620 876 12 43", "1234-4567");
+        Person p1("Kis Bela", "Budapest Janos utca 43", "0670 337 28 34", "0670 342 33 83", "bubus");
+
+        b->add(&i1);
+        b->write(std::cout);
+
         delete b;
         in.close();
 }

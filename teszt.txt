@@ -1,0 +1,45 @@
+p
+Teszt Tamás
+Budapest t utca 43
+0620 43 433 543
+6070 32 334 234
+Tomika
+i
+Alma együttes
+Budapest Gyümölcs utca 4
+0630 324 95 34
+2334 1234
+i
+Nagyon menő cég
+Győr laptop út 9
+0670 324 84 69
+4567 2345
+p
+Kis Bela
+Budapest Janos utca 43
+0670 337 28 34
+0670 342 33 83
+bubus
+p
+Teszt Teréz
+Budapest t utca 43
+0630 965 85 34
+0670 934 75 23
+Teri
+i
+Berényi kft
+Budapest Mátyás király tér 31
+0620 324 95 54
+2353 2353
+p
+Fa Szilárd
+Miskolc Papír utca 3
+0670 492 84 84
+0620 291 32 84
+Szili
+p
+Fa Szilárd
+Budapest Szent Imre tér 3
+0620 325 95 83
+0670 343 34 34
+Rezsi Ogre
