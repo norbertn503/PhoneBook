@@ -9,6 +9,15 @@
 #include "Institution.h"
 #include "PhoneBook.h"
 
+#define CPORTA
+#ifdef CPORTA
+#define TESZT 0
+#endif // CPORTA
+#ifndef TESZT
+#define TESZT 1
+#endif // TESZT
+
+
 void Test_1(){
     std::cout << "myString osztály tesztje:" << std::endl;
 
@@ -222,6 +231,17 @@ std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
         b->write(std::cout);
 
     std::cout << "\tchange(myString,myString,myString)" << std::endl;
+        try{
+            b->change("0620 325 95 83","Name","Uj Becenev");
+        }catch (const char* e){
+            std::cout << e << std::endl;
+            }
+
+        try{
+            b->change("0610 234 12 94","Address", "Csepel");
+        }catch (const char* e){
+            std::cout << e << std::endl;
+            }
 
         b->change("0620 325 95 83","Nickname","Új becenév");
 
@@ -233,8 +253,92 @@ std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
 }
 
 int main(){
-   // Test_1();
-  //  Test_2();
-    Test_3();
+    int menu;
+  if(TESZT == 1){
+        Test_1();
+        Test_2();
+        Test_3();
+    }else{
+        std::fstream in;
+        in.open("teszt.txt");
+
+        PhoneBook* b = new PhoneBook(in);
+        int menu = 0;
+
+        while(menu != 5)
+        {
+            std::cout << "1,Elem hozzáadása\n2,Elem törlése\n3,Elem megváltoztatása\n4,Listázás\n5,Kilépés" << std::endl;
+            std::cin >> menu;
+
+            switch(menu)
+            {
+                case (1):{
+                          std::cout << "p vagy i ?" << std::endl;
+                          char c;
+                          std::cin >> c;
+
+                          while(c != 'b')
+                          {
+                                if(c == 'p'){
+                                    std::cout << "Adja meg a személy adatait" << std::endl;
+
+                                    myString s0,s1,s2,s3,s4,s5;
+
+                                    std::cin >> s0 >> s1 >> s2 >> s3 >> s4 >> s5;
+
+                                    Person* p = new Person(s1,s2,s3,s4,s5);
+                                    b->add(p);
+                                    std::cout << "Elem hozzáadva" << std::endl;
+                                }
+                                else if(c == 'i'){
+                                    std::cout << "Adja meg az intézmény adatait" << std::endl;
+
+                                    myString s0,s1,s2,s3,s4;
+
+                                    std::cin >> s0 >> s1 >> s2 >> s3 >> s4;
+
+                                    Institution* i = new Institution(s1,s2,s3,s4);
+                                    b->add(i);
+                                    std::cout << "Elem hozzáadva" << std::endl;
+                                }
+                                break;
+                            }//while b
+                            break;
+                }
+                case(2): {
+                         std::cout << "Adja meg a trölölni kívánt telefonszámot" << std::endl;
+                         myString number;
+                         myString number2;
+                         std::cin >> number >> number2;
+
+                         try{
+                            b->eraseRecord(number2);
+                            std::cout << "Elem törölve" << std::endl;
+                         }catch (const char* e){std::cout << e << std::endl;}
+                         break;
+                }
+                case(3): {
+                         std::cout << "Adja meg a megváltoztati kívánt elem számát, utána a változtatandó adat típusát(Name,Pnumber) végül az új adatot" << std::endl;
+
+                         myString s0,number,type,newdata;
+                         std::cin >> s0, number,type,newdata;
+
+                         try{
+                            b->change(number,type,newdata);
+                            std::cout << "Elem megváltoztatva" << std::endl;
+                         }catch (const char* e){std::cout << e << std::endl;}
+                         break;
+                }
+                case(4): b->write(std::cout);
+                         break;
+
+                default: std::cout << "Nincs ilyen lehetőség;" << std::endl;
+            }//switch
+
+        }//while menu beolva
+    in.close();
+    delete b;
+}
+
     return 0;
 }
