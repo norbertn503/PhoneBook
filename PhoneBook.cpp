@@ -54,6 +54,69 @@ void PhoneBook::add(PhoneBookRecord* p){
     List[Size-1] = p;
 }
 
+void PhoneBook::eraseRecord(myString s){
+    if(Size == 0)throw "A telefonkönyv üres";
+
+    bool nincs = true;
+
+    for(size_t i = 0; i < Size; i++){
+        if(List[i]->getNumber() == s){
+            nincs = false;
+        }
+
+    }
+    if(nincs) throw "Nincs ilyen elem";
+
+    PhoneBookRecord** tmp = new PhoneBookRecord*[Size];
+    size_t j = 0;
+    for(size_t i = 0; i < Size;i++){
+
+        if(List[i]->getNumber() != s){
+                tmp[j] = List[i];
+                j+=1;
+        }else{
+            delete List[i];
+        }
+    }//for
+
+    delete[] List;
+
+    Size--;
+
+    List = new PhoneBookRecord*[Size];
+    for(size_t i = 0; i < Size ; i++){
+        List[i] = tmp[i];
+    }
+
+    delete[] tmp;
+}
+
+void PhoneBook::change(myString s0, myString s1, myString s2){
+    for(size_t i = 0; i < Size; i++){
+
+        if(List[i]->getNumber() == s0){
+            if(s1 == "Number"){
+
+                for(size_t j = 0; j < Size; j++){
+                    if(List[i]->getNumber() == s2)  throw "Ilyen szám már létezik";
+                    }
+
+                 List[i]->setNumber(s2);
+
+            }else if(s1 =="Address") List[i]->setAddress(s2);
+
+            else if(s1 == "Pnumber") List[i]->setNumber(s2);
+
+            else if(s1 == "Nickname") List[i]->setNickname(s2);
+
+            else if( s1 =="HelpDeskNumber") List[i]->setHDN(s2);
+
+            else throw("Érvénytelen adat mező");
+        }
+    }
+
+}
+
 void PhoneBook::write(std::ostream& os){
     for(size_t i = 0; i < Size; i++){
         List[i]->write(os);

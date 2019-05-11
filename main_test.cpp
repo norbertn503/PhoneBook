@@ -179,7 +179,7 @@ std::cout << "Institution osztály tesztje: " << std::endl;
 void Test_3(){
 std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
 
-    std::cout << "PhoneBook ctor:" << std::endl;
+    std::cout << "\tPhoneBook ctor:" << std::endl;
         std::ifstream in;
         in.open("teszt.txt");
         PhoneBook* b = new PhoneBook(in);
@@ -187,7 +187,7 @@ std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
         std::cout << "Létrehoztuk, írjuk is ki:" << std::endl;
         b->write(std::cout);
 
-    std::cout << "add(PhoneBookRecord*):" << std::endl;
+    std::cout << "\tadd(PhoneBookRecord*):" << std::endl;
 
         Institution* i1 = new Institution("Snack Fun", "Szekszárd Mag utca 43", "0620 876 12 43", "1234-4567");
         Person* p1 = new Person("Kis Bela", "Budapest Janos utca 43", "0670 337 28 34", "0670 342 33 83", "bubus");
@@ -204,13 +204,37 @@ std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
         b->write(std::cout);
 
         delete p1;
+
+    std::cout << "\teraseRecord(myString):" << std::endl;
+
+        std::cout << "Próbáljuk törölni:" << std::endl;
+
+        try{
+            b->eraseRecord("0610 323 32 32");
+        }catch (const char* e){
+            std::cout << e << std::endl;
+        }
+
+        std::cout << "Próbáljuk még egyszer" << std::endl;
+        std::cout << "Sikerült törölni?" << std::endl;
+
+        b->eraseRecord("0620 43 433 543");
+        b->write(std::cout);
+
+    std::cout << "\tchange(myString,myString,myString)" << std::endl;
+
+        b->change("0620 325 95 83","Nickname","Új becenév");
+
+        std::cout << "Megváltozott ?" << std::endl;
+        b->write(std::cout);
+
         delete b;
         in.close();
 }
 
 int main(){
-    Test_1();
-    Test_2();
+   // Test_1();
+  //  Test_2();
     Test_3();
     return 0;
 }
