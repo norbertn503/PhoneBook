@@ -188,12 +188,22 @@ std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
         b->write(std::cout);
 
     std::cout << "add(PhoneBookRecord*):" << std::endl;
-        Institution i1("Snack Fun", "Szekszárd Mag utca 43", "0620 876 12 43", "1234-4567");
-        Person p1("Kis Bela", "Budapest Janos utca 43", "0670 337 28 34", "0670 342 33 83", "bubus");
 
-        b->add(&i1);
+        Institution* i1 = new Institution("Snack Fun", "Szekszárd Mag utca 43", "0620 876 12 43", "1234-4567");
+        Person* p1 = new Person("Kis Bela", "Budapest Janos utca 43", "0670 337 28 34", "0670 342 33 83", "bubus");
+
+        try{
+            b->add(p1);
+        }catch (const char* e)
+        {
+        std::cout << e << std::endl;
+        }
+
+        b->add(i1);
+        std::cout << "Sikerült belerakni?" << std::endl;
         b->write(std::cout);
 
+        delete p1;
         delete b;
         in.close();
 }

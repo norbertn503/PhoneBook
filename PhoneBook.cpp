@@ -9,7 +9,7 @@ PhoneBook::PhoneBook(std::istream& is){
     List = new PhoneBookRecord*[1];
     myString s0,s1,s2,s3,s4,s5;
 
-    while(!is.eof()){
+    for(; is >> s0; Size++){
         if(Size != 0){
             tmp = new PhoneBookRecord*[Size+1];
 
@@ -19,8 +19,6 @@ PhoneBook::PhoneBook(std::istream& is){
             delete[] List;
             List = tmp;
         }//if
-
-        is >> s0;
 
         if(s0 == "p"){
             is >> s1 >> s2 >> s3 >> s4 >>s5;
@@ -33,11 +31,7 @@ PhoneBook::PhoneBook(std::istream& is){
             Institution* newdata =  new Institution(s1,s2,s3,s4);
             List[Size] = newdata;
         }
-
-       Size++;
     }//while
-
-    Size--;
 }
 
 void PhoneBook::add(PhoneBookRecord* p){
