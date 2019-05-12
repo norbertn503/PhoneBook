@@ -263,7 +263,7 @@ int main(){
         in.open("teszt.txt");
 
         PhoneBook* b = new PhoneBook(in);
-        int menu = 0;
+        int menu ;
 
         while(menu != 5)
         {
