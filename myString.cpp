@@ -1,4 +1,5 @@
 #include <cstring>
+#include <iostream>
 #include "myString.h"
 
 myString::myString():Len(0){
@@ -72,10 +73,12 @@ std::ostream& operator<<(std::ostream& os, const myString& s){
 std::istream& operator>>(std::istream& is, myString& s){
     unsigned char ch;
     s = myString("");
+    std::ios_base::fmtflags fl = is.flags();
    is >> std::noskipws;
    while(is >> ch){
     if(ch == '\n') break;
     s = s + ch;
    }
+    is.setf(fl);
     return is;
 }

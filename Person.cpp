@@ -7,5 +7,5 @@ bool Person::operator==(const Person& p){
 
 void Person::write(std::ostream& os){
     PhoneBookRecord::write(os);
-    os << Pnumber << " " << Nickname << std::endl;
+    os << Pnumber << ", " << Nickname << std::endl;
 }

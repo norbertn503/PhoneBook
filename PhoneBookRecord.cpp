@@ -5,5 +5,5 @@ bool PhoneBookRecord::operator==(const PhoneBookRecord& p){
 }
 
 void PhoneBookRecord::write(std::ostream& os){
-    os << Name << " " << Address << " " << Number << " ";
+    os << Name << ", " << Address << ", " << Number << ", ";
 }

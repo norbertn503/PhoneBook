@@ -3,7 +3,7 @@
 #include "Person.h"
 #include "Institution.h"
 
-PhoneBook::PhoneBook(std::istream& is){
+PhoneBook::PhoneBook(std::ifstream& is){
     Size = 0;
     PhoneBookRecord** tmp;
     List = new PhoneBookRecord*[1];
@@ -100,8 +100,7 @@ void PhoneBook::change(myString s0, myString s1, myString s2){
                 for(size_t j = 0; j < Size; j++){
                     if(List[i]->getNumber() == s2)  throw "Ilyen szám már létezik";
                     }
-
-                 List[i]->setNumber(s2);
+                    List[i]->setNumber(s2);
 
             }else if(s1 =="Address") List[i]->setAddress(s2);
 

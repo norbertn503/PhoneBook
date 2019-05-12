@@ -14,8 +14,13 @@ public:
     myString getHDN()const {return HelpDeskNumber;}
     void setHDN(myString s){HelpDeskNumber = s;}
 
+    ///Egyenlőség operator
+    ///param - a művelet másik operandusa
+    ///return - művelet eredménye
     bool operator==(const Institution&);
 
+    ///Objektum kiírása
+    ///param - output stream ahova a kiírás történni fog
     void write(std::ostream&);
 
    // PhoneBookRecord* clone();

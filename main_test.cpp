@@ -36,7 +36,6 @@ void Test_1(){
             }else std::cout << "Rossz a hossz" << std::endl;
 
         if(s1 == "s"){
-        //valamiért mindig rossz de ha kíírom azt kapom amit kell és memória hiba sincs
             std::cout << "Jó a karakter" << std::endl;
         }else std::cout << "Rossz a karakter" << std::endl;
 
@@ -259,14 +258,14 @@ int main(){
         Test_2();
         Test_3();
     }else{
-        std::fstream in;
+        std::ifstream in;
         in.open("teszt.txt");
 
         PhoneBook* b = new PhoneBook(in);
-        int menu ;
+        int menu = 0;
 
-        while(menu != 5)
-        {
+            while(menu != 5)
+            {
             std::cout << "1,Elem hozzáadása\n2,Elem törlése\n3,Elem megváltoztatása\n4,Listázás\n5,Kilépés" << std::endl;
             ///csak számot fogad el, ha mást kap livelockba kerül
             std::cin >> menu;
@@ -338,7 +337,10 @@ int main(){
                 default: std::cout << "Nincs ilyen lehetőség;" << std::endl;
             }//switch
 
-        }//while menu beolva
+}//while menu beolva
+
+
+
     in.close();
     delete b;
 }

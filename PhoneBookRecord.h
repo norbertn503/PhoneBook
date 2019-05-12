@@ -10,7 +10,10 @@ class PhoneBookRecord{
     myString Number;
 
 public:
+    ///Konstruktor
     PhoneBookRecord(myString Na ,myString Ad ,myString Nu):Name(Na), Address(Ad), Number(Nu){}
+
+   ///Destruktor
     virtual ~PhoneBookRecord(){}
 
     myString getName()const {return Name;}
@@ -23,8 +26,13 @@ public:
     virtual void setPnumber(myString){};
     virtual void setNickname(myString){};
 
+    ///Objektum kiírása
+    ///param - output stream ahova a kiírás történni fog
     virtual void write(std::ostream&);
 
+    ///Egyenlőség operator
+    ///param - a művelet másik operandusa
+    ///return - művelet eredménye
     bool operator==(const PhoneBookRecord&);
 
  //   virtual PhoneBookRecord* clone() = 0;
