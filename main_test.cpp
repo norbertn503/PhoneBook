@@ -253,7 +253,7 @@ std::cout << "\tPhoneBook osztály tesztje:" << std::endl;
 }
 
 int main(){
-    int menu;
+
   if(TESZT == 1){
         Test_1();
         Test_2();
@@ -268,6 +268,7 @@ int main(){
         while(menu != 5)
         {
             std::cout << "1,Elem hozzáadása\n2,Elem törlése\n3,Elem megváltoztatása\n4,Listázás\n5,Kilépés" << std::endl;
+            ///csak számot fogad el, ha mást kap livelockba kerül
             std::cin >> menu;
 
             switch(menu)
@@ -277,8 +278,6 @@ int main(){
                           char c;
                           std::cin >> c;
 
-                          while(c != 'b')
-                          {
                                 if(c == 'p'){
                                     std::cout << "Adja meg a személy adatait" << std::endl;
 
@@ -301,10 +300,10 @@ int main(){
                                     b->add(i);
                                     std::cout << "Elem hozzáadva" << std::endl;
                                 }
-                                break;
-                            }//while b
+                                else std::cout << "Érvénytelen karakter" << std::endl;
+
                             break;
-                }
+                }///case 1
                 case(2): {
                          std::cout << "Adja meg a trölölni kívánt telefonszámot" << std::endl;
                          myString number;
@@ -316,20 +315,24 @@ int main(){
                             std::cout << "Elem törölve" << std::endl;
                          }catch (const char* e){std::cout << e << std::endl;}
                          break;
-                }
+                } /// case 2
                 case(3): {
-                         std::cout << "Adja meg a megváltoztati kívánt elem számát, utána a változtatandó adat típusát(Name,Pnumber) végül az új adatot" << std::endl;
+                         std::cout << "Adja meg a megváltoztati kívánt elem számát, utána a változtatandó adat típusát(Nickname,Pnumber) végül az új adatot" << std::endl;
 
                          myString s0,number,type,newdata;
-                         std::cin >> s0, number,type,newdata;
+                         std::cin >> s0 >> number >> type >>newdata;
 
                          try{
                             b->change(number,type,newdata);
                             std::cout << "Elem megváltoztatva" << std::endl;
                          }catch (const char* e){std::cout << e << std::endl;}
+
                          break;
-                }
+                } /// case 3
                 case(4): b->write(std::cout);
+                         break;
+
+                case(5): std::cout << "Program leállítása" << std::endl;
                          break;
 
                 default: std::cout << "Nincs ilyen lehetőség;" << std::endl;
